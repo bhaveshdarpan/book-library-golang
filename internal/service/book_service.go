@@ -23,6 +23,7 @@ func (s *BookService) GetAllBooks() ([]Book, error) {
 }
 
 func (s *BookService) AddBook(book Book) (*Book, error) {
+	
 	return s.BookRepository.AddBook(book)
 }
 
