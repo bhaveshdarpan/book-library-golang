@@ -1,4 +1,7 @@
 <<<<<<< Updated upstream
+package repo
+
+=======
 package repository
 
 import (
@@ -61,5 +64,4 @@ func (repo *SqlxBookRepository) Delete(id uuid.UUID) error {
 	_, err := repo.db.Exec(query, id)
 	return err
 }
-=======
 >>>>>>> Stashed changes

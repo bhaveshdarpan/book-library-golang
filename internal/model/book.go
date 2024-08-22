@@ -5,6 +5,13 @@ import (
 	"github.com/google/uuid"
 )
 
+<<<<<<< Updated upstream
+=======
+import (
+	"github.com/google/uuid"
+)
+
+>>>>>>> Stashed changes
 type Book struct {
 	ID       uuid.UUID `db:"id"`
 	Title    string    `db:"Book_Title"`
