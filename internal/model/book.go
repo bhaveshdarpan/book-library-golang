@@ -1,5 +1,6 @@
 package model
 
+
 import (
 	"github.com/pborman/uuid"
 	"gorm.io/gorm"
@@ -15,4 +16,5 @@ type Book struct{
 
 func (Book) TableName() string{
 	return "BooksLibrary"
+
 }
