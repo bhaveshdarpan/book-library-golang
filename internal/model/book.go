@@ -1,20 +1,15 @@
 package model
 
-
 import (
-	"github.com/pborman/uuid"
-	"gorm.io/gorm"
+	"github.com/google/uuid"
 )
 
-type Book struct{
-	ID uuid         `gorm:"primaryKey;autoincrement" json:"id"` 
-	Title string    `gorm:"column:Book_Title" json:"title"`
-	Author string   `gorm:"column:Author" json:"author"` 
-	Genre string    `gorm:"column:Genre" json:"genre"`
-	Quantity int    `gorm:"column:quantity" json:"quantity"` 
+type Book struct {
+	ID       uuid.UUID `db:"id"`
+	Title    string    `db:"Book_Title"`
+	Author   string    `db:"Author"`
+	Genre    string    `db:"Genre"`
+	Quantity int       `db:"quantity"`
 }
 
-func (Book) TableName() string{
-	return "BooksLibrary"
-
-}
+const TableName = "BooksLibrary"
