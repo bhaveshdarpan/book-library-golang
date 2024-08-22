@@ -1,6 +1,7 @@
 package model
 
 import (
+<<<<<<< Updated upstream
 	"github.com/google/uuid"
 )
 
@@ -13,3 +14,19 @@ type Book struct {
 }
 
 const TableName = "BooksLibrary"
+=======
+	"github.com/pborman/uuid"
+)
+
+type Book struct {
+	ID       uuid.UUID `gorm:"primaryKey;autoincrement" json:"id"`
+	Title    string    `gorm:"column:Book_Title" json:"title"`
+	Author   string    `gorm:"column:Author" json:"author"`
+	Genre    string    `gorm:"column:Genre" json:"genre"`
+	Quantity int       `gorm:"column:quantity" json:"quantity"`
+}
+
+func (Book) TableName() string {
+	return "BooksLibrary"
+}
+>>>>>>> Stashed changes
