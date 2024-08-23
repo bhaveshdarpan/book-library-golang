@@ -28,15 +28,20 @@ func (bc *BookController) GetAllBooks(w http.ResponseWriter, r *http.Request) {
 
 func (bc *BookController) AddBook(w http.ResponseWriter, r *http.Request) {
 	var book model.Book
-	json.NewDecoder(r.Body).Decode(&book)
-	addedBook, error := bc.BookService.AddBook(book)
-	if error != nil {
-		http.Error(w, error.Error(), http.StatusExpectationFailed)
+	if err := json.NewDecoder(r.Body).Decode(&book); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	addedBook, err := bc.BookService.AddBook(&book)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(addedBook)
 }
+
 
 func (bc *BookController) UpdateBook(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -45,7 +50,7 @@ func (bc *BookController) UpdateBook(w http.ResponseWriter, r *http.Request) {
 	var book model.Book
 	json.NewDecoder(r.Body).Decode(&book)
 
-	err := bc.BookService.UpdateBook(id, book)
+	err := bc.BookService.UpdateBook(id, &book)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusNotFound)
 		return
