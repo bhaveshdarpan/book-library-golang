@@ -2,34 +2,53 @@ package service
 
 import (
 	"com/github/book-go/internal/model"
-	"com/github/book-go/internal/repository"
+	repo "com/github/book-go/internal/repository"
+	"github.com/google/uuid"
+
 )
 
 type BookService struct {
-	Book           *model.Book
-	BookRepository *repo.BookRepository
+	BookRepository repo.BookRepository
 }
 
-func NewBookService(bookRepository *repo.BookRepository, book *model.Book) *BookService {
+func NewBookService(bookRepository repo.BookRepository) *BookService {
 	return &BookService{BookRepository: bookRepository}
 }
 
-func (s *BookService) GetBook(id string) (*Book, error) {
-	return s.BookRepository.GetBook(id)
+func (s *BookService) GetBook(id string) (*model.Book, error) {
+	bookID, err := uuid.Parse(id)
+	if err != nil {
+		return nil, err
+	}
+	return s.BookRepository.FindByID(bookID)
 }
 
-func (s *BookService) GetAllBooks() ([]Book, error) {
-	return s.BookRepository.GetAllBooks()
+func (s *BookService) GetAllBooks() ([]model.Book, error) {
+	return s.BookRepository.GetAll()
 }
 
-func (s *BookService) AddBook(book Book) (*Book, error) {
-	return s.BookRepository.AddBook(book)
+func (s *BookService) AddBook(book *model.Book) (*model.Book, error) {
+	book.ID = uuid.New()
+	err := s.BookRepository.Add(book)
+	if err != nil {
+		return nil, err
+	}
+	return book, nil
 }
 
-func (s *BookService) UpdateBook(id string, updatedBook Book) error {
-	return s.BookRepository.UpdateBook(id, updatedBook)
+func (s *BookService) UpdateBook(id string, updatedBook *model.Book) error {
+	bookID, err := uuid.Parse(id)
+	if err != nil {
+		return err
+	}
+	updatedBook.ID = bookID
+	return s.BookRepository.Update(updatedBook)
 }
 
 func (s *BookService) DeleteBook(id string) error {
-	return s.BookRepository.DeleteBook(id)
+	bookID, err := uuid.Parse(id)
+	if err != nil {
+		return err
+	}
+	return s.BookRepository.Delete(bookID)
 }

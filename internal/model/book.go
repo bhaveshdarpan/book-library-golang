@@ -5,11 +5,10 @@ import (
 )
 
 type Book struct {
-	ID       uuid.UUID `db:"id"`
-	Title    string    `db:"Book_Title"`
-	Author   string    `db:"Author"`
-	Genre    string    `db:"Genre"`
-	Quantity int       `db:"quantity"`
+	ID     uuid.UUID `db:"id"`
+	Title  string    `db:"book_title"`
+	Author string    `db:"author"`
+	Genre  string    `db:"genre"`
 }
 
-const TableName = "BooksLibrary"
+const TableName = "BookBank"
