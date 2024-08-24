@@ -76,7 +76,6 @@
 
 // }
 
-
 package main
 
 import (
@@ -86,8 +85,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog/log"
 
@@ -101,7 +100,7 @@ func main() {
 	// Set up CORS
 	corsConfig := cors.Config{
 		AllowOrigins: []string{"http://localhost:3000"}, // Allow your React app
-		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
 	}
 	r1.Use(cors.New(corsConfig))
