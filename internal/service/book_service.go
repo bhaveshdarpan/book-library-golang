@@ -3,8 +3,8 @@ package service
 import (
 	"com/github/book-go/internal/model"
 	repo "com/github/book-go/internal/repository"
-
 	"github.com/google/uuid"
+
 )
 
 type BookService struct {
