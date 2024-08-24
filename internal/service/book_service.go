@@ -2,7 +2,7 @@ package service
 
 import (
 	"com/github/book-go/internal/model"
-	"com/github/book-go/internal/repo"
+	"com/github/book-go/internal/repository"
 )
 
 type BookService struct {
