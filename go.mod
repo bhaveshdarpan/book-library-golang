@@ -3,11 +3,15 @@ module com/github/book-go
 go 1.22.5
 
 require (
+	github.com/gin-contrib/cors v1.7.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/lib/pq v1.10.9
 )
 
-require github.com/mattn/go-colorable v0.1.13 // indirect
+require (
+	github.com/kr/text v0.2.0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+)
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect

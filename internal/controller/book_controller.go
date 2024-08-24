@@ -42,7 +42,6 @@ func (bc *BookController) AddBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(addedBook)
 }
 
-
 func (bc *BookController) UpdateBook(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
