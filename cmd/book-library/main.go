@@ -106,7 +106,7 @@ func main() {
 	r1.Use(cors.New(corsConfig))
 
 	// Database connection
-	dsn := "postgres://book-bank:bookbank@34.143.145.12:5432/bookbank?sslmode=disable"
+	dsn := "postgres://book-bank:bookbank@10.31.0.6:5432/bookbank?sslmode=disable"
 	db, err := sqlx.Open("postgres", dsn)
 	if err != nil {
 		log.Fatal().AnErr("DB not started properly", err)
