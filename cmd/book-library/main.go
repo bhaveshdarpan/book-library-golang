@@ -99,7 +99,7 @@ func main() {
 
 	// Set up CORS
 	corsConfig := cors.Config{
-		AllowOrigins: []string{"http://10.148.0.8:3000"}, // Allow your React app
+		AllowOrigins: []string{"http://10.148.0.9:3000"}, // Allow your React app
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},
 	}
