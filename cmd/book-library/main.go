@@ -83,6 +83,7 @@ import (
 	"com/github/book-go/internal/repository"
 	"com/github/book-go/internal/service"
 	"fmt"
+	"net/http"
 	"os"
 
 	"github.com/gin-contrib/cors"
@@ -135,6 +136,12 @@ func main() {
 	bookController := controller.NewBookController(bookService)
 
 	// Define routes
+	r1.GET("/healthz", func(c *gin.Context){
+		c.JSON(http.StatusOK, gin.H{
+			"status": "Healthy",
+		})
+	})
+	
 	r1.GET("/api/books", func(c *gin.Context) {
 		bookController.GetAllBooks(c.Writer, c.Request)
 	})
